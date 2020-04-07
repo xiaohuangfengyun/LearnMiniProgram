@@ -1,0 +1,22 @@
+<!-- 1.input的基本使用 -->
+<input/>
+
+<!-- 2.value属性：输入框的初始内容 -->
+<input value="哈哈哈"/>
+
+<!-- 3.type属性：键盘的类型(文本/数字/身份证/带小数点的数字) -->
+<input type="text"/>
+<input type="number"/>
+<input type="idcard"/>
+<input type="digit"/>
+
+<!-- 4.password属性 -->
+<input password/>
+
+<!-- 5.placeholder属性：占位文字 -->
+<input placeholder="请输入内容"/>
+
+<!-- 6.input绑定事件 -->
+<input bindinput="handleInput"
+       bindfocus="handleFocus"
+       bindblur="handlerBlur"/>
