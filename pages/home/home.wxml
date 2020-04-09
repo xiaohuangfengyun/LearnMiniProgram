@@ -1,3 +1,47 @@
 <!--pages/home/home.wxml-->
 <text class="title">Hello World</text>
 <button size="mini">按钮</button>
+
+<!-- 1.使用自定义组件 -->
+<my-cpn></my-cpn>
+<my-cpn/>
+
+<!-- 5.练习 -->
+<w-tab-control titles="{{['衣服','裤子','鞋子','啊啊啊']}}"
+               bind:itemclick="handleTabClick"/>
+
+<!-- 6.直接选中组件修改数据/调用方法 -->
+<button size="mini" bind:tap="handleIncrementCpn">修改组件内的数据</button>
+<my-sel id="sel-id"/>
+
+<view>-------------------------------------</view>
+
+<!-- 7.插槽的使用 -->
+<!-- 7.1.单个插槽的使用 -->
+<my-slot>
+  <button size="mini">我是插入的按钮</button> 
+</my-slot>
+
+<my-slot>
+  <text>我是插入的文本</text>
+</my-slot>
+
+<my-slot>
+  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586414637633&di=6f98ede4fddc3da287182ebd662e039e&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2F201406%2F22%2F082448e35qi3z4n94ej83j.jpg"/>
+</my-slot>
+
+<my-slot>
+  <slider value="60"></slider>
+</my-slot>
+
+<!-- 7.2.多个插槽的使用 -->
+<!-- 
+  注意事项：
+  1.给每一个插槽起一个名字：name属性
+  2.必须在Component对象中添加一个选项：options -> multipleSlots: true
+ -->
+<my-mslot>
+<button size="mini" slot="slot2">我是插入的按钮</button>
+<button size="mini" slot="slot1">我是插入的按钮2</button>
+<button size="mini" slot="slot3">我是插入的按钮3</button>
+</my-mslot>
