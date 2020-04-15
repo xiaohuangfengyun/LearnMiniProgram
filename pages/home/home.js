@@ -11,7 +11,8 @@ Page({
       'pop': {page: 0, list: []},
       'new': {page: 0, list: []},
 	    'sell': {page: 0, list: []}
-    }
+    },
+    currentType: 'pop'
   },
   onLoad: function (options) {
     // 0.请求测试（汇率）
@@ -20,8 +21,8 @@ Page({
       method: 'GET',
       data: {
         // type: 0,
-        //bank: 0,
-        key: '8b9a9321e1d86cc6a8c522e7ed967fb4'
+        // bank: 0,
+        // key: '8b9a9321e1d86cc6a8c522e7ed967fb4'
       },
       success: res => {
         console.log(res);
@@ -54,10 +55,22 @@ Page({
   _getGoodsData(type) {
     // 1.获取页码
     const page = this.data.goods[type].page + 1;
-    //this.data.goods[type].page = this.data.goods[type].page + 1;
+    this.data.goods[type].page = this.data.goods[type].page + 1;
+
     // 2.发送网络请求
     getGoodsData(type,page).then(res => {
       console.log(res);
+      // 2.1.取出数据
+      const list = res.data.data.list;
+      // 2.2.将数据设置到对应type的list中
+      const oldList = this.data.goods[type].list;
+      oldList.push(...list);//...语法，如果直接push数组，那oldList就变成2维数组了
+      // 2.3.将数据设置到data中的goods中
+      // （这一段比较复杂，请看视频https://www.bilibili.com/video/BV1Kt411V7rg?p=60）30min左右的讲解
+      const typeKey = `goods.${type}.list`;//ES6字符串拼接
+      this.setData({
+        [typeKey] : oldList
+      });
     });
   },
   // ---------------------- 事件监听函数 ----------------------
@@ -65,5 +78,14 @@ Page({
     // 取出index
     const index = event.detail.index;
     console.log(index);
+    var type = '';
+    switch(index){
+      case 0: type='pop';break;
+      case 1: type='new';break;
+      case 2: type='sell';break;
+    }
+    this.setData({
+      currentType: type
+    });
   }
 });
