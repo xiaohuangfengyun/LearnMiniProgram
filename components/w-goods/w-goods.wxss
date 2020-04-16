@@ -1,0 +1,14 @@
+/* components/w-goods/w-goods.wxss */
+.goods {
+  display: flex;
+  flex-wrap: wrap;/* 换行 */
+  justify-content: space-evenly;/* 项目之间的间隔都相等 */
+}
+.goods-item {
+  width: 48%;
+  /* 设置相对定位是因为
+  w-goods-item组件的信息描述部分用了绝对定位，
+  因此在这设置相对定位，就是以此为绝对定位的开始 */
+  position: relative;
+  margin-top: 16rpx;
+}

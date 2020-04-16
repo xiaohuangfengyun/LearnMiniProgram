@@ -12,9 +12,4 @@
 <w-tab-control titles='{{titles}}' bind:tabclick="handleTabClick"/>
 
 <!-- 5.展示商品数据 -->
-<view>
-  <block wx:for='{{goods[currentType].list}}' wx:key='index'>
-    <view>{{index+1 + ": " + item.title}}</view>
-    <view>---------------------------------</view>
-  </block>
-</view>
+<w-goods goods="{{goods[currentType].list}}"/>
